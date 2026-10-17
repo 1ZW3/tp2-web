@@ -1,19 +1,71 @@
+class Carta{
+	constructor(peso, naipe, nome, nomeEspecial = null){
+		this.peso = peso;
+		this.naipe = naipe;
+		this.nome = nome;
+		this.nomeEspecial = nomeEspecial;
+	}
+
+	getNome(){
+		if(this.nomeEspecial)
+			return this.nomeEspecial;
+		return `${this.nome} de ${this.naipe}`;
+	}
+	
+}
+
 let baralho = [
-	{ peso: 0, naipe: 0 }, { peso: 0, naipe: 1 }, { peso: 0, naipe: 2 },
-	{ peso: 1, naipe: 0 }, { peso: 1, naipe: 1 }, { peso: 1, naipe: 2 }, { peso: 1, naipe: 3 },
-	{ peso: 2, naipe: 0 }, { peso: 2, naipe: 1 }, { peso: 2, naipe: 2 }, { peso: 2, naipe: 3 },
-	{ peso: 3, naipe: 1 }, { peso: 3, naipe: 3 },
-	{ peso: 4, naipe: 0 }, { peso: 4, naipe: 1 }, { peso: 4, naipe: 2 }, { peso: 4, naipe: 3 },
-	{ peso: 5, naipe: 0 }, { peso: 5, naipe: 1 }, { peso: 5, naipe: 2 }, { peso: 5, naipe: 3 },
-	{ peso: 6, naipe: 0 }, { peso: 6, naipe: 1 }, { peso: 6, naipe: 2 }, { peso: 6, naipe: 3 },
-	{ peso: 7, naipe: 0 }, { peso: 7, naipe: 2 }, { peso: 7, naipe: 3 },
-	{ peso: 8, naipe: 0 }, { peso: 8, naipe: 1 }, { peso: 8, naipe: 2 }, { peso: 8, naipe: 3 },
-	{ peso: 9, naipe: 0 }, { peso: 9, naipe: 1 }, { peso: 9, naipe: 2 }, { peso: 9, naipe: 3 },
-	{ peso: 10, naipe: 0 },
-	{ peso: 11, naipe: 1 },
-	{ peso: 12, naipe: 2 },
-	{ peso: 13, naipe: 3 }
-];
+	new Carta(0, "Ouros", "4"),
+    new Carta(0, "Espadas", "4"),
+    new Carta(0, "Copas", "4"),
+
+    new Carta(1, "Ouros", "5"),
+    new Carta(1, "Espadas", "5"),
+    new Carta(1, "Copas", "5"),
+    new Carta(1, "Paus", "5"),
+
+    new Carta(2, "Ouros", "6"),
+    new Carta(2, "Espadas", "6"),
+    new Carta(2, "Copas", "6"),
+    new Carta(2, "Paus", "6"),
+
+    new Carta(3, "Espadas", "7"),
+    new Carta(3, "Paus", "7"),
+
+    new Carta(4, "Ouros", "Q"),
+    new Carta(4, "Espadas", "Q"),
+    new Carta(4, "Copas", "Q"),
+    new Carta(4, "Paus", "Q"),
+
+    new Carta(5, "Ouros", "J"),
+    new Carta(5, "Espadas", "J"),
+    new Carta(5, "Copas", "J"),
+    new Carta(5, "Paus", "J"),
+
+    new Carta(6, "Ouros", "K"),
+    new Carta(6, "Espadas", "K"),
+    new Carta(6, "Copas", "K"),
+    new Carta(6, "Paus", "K"),
+
+    new Carta(7, "Ouros", "A"),
+    new Carta(7, "Copas", "A"),
+    new Carta(7, "Paus", "A"),
+
+    new Carta(8, "Ouros", "2"),
+    new Carta(8, "Espadas", "2"),
+    new Carta(8, "Copas", "2"),
+    new Carta(8, "Paus", "2"),
+
+    new Carta(9, "Ouros", "3"),
+    new Carta(9, "Espadas", "3"),
+    new Carta(9, "Copas", "3"),
+    new Carta(9, "Paus", "3"),
+
+    new Carta(10, "Ouros", "7", "7 Ouros"),
+    new Carta(11, "Espadas", "A", "Espadilha"),
+    new Carta(12, "Copas", "7", "7 Copas"),
+    new Carta(13, "Paus", "4", "Zap")
+]
 
 console.log("Suas cartas");
 
@@ -27,128 +79,21 @@ function pickCard(){
 
 for(let i = 0; i < 3; ++i){
 	let carta = pickCard();
-	let naipe;
-	switch (carta.naipe) {
-		case 0:
-			naipe = "ouros";
-			break;
-		case 1:
-			naipe = "espadas";
-			break;
-		case 2:
-			naipe = "copas";
-			break;
-		case 3:
-			naipe = "paus";
-			break;
-	}
-	switch (carta.peso) {
-	    case 0:
-	        console.log("4 de " + naipe);
-	        break;
-	    case 1:
-	        console.log("5 de " + naipe);
-	        break;
-	    case 2:
-	        console.log("6 de " + naipe);
-	        break;
-	    case 3:
-	        console.log("7 de " + naipe);
-	        break;
-	    case 4:
-	        console.log("Q de " + naipe);
-	        break;
-	    case 5:
-	        console.log("J de " + naipe);
-	        break;
-	    case 6:
-	        console.log("K de " + naipe);
-	        break;
-	    case 7:
-	        console.log("A de " + naipe);
-	        break;
-	    case 8:
-	        console.log("2 de " + naipe);
-	        break;
-	    case 9:
-	        console.log("3 de " + naipe);
-	        break;
-	    case 10:
-	        console.log("7 Ouros");
-	        break;
-	    case 11:
-	        console.log("Espadilha");
-	        break;
-	    case 12:
-	        console.log("7 Copas");
-	        break;
-	    case 13:
-	        console.log("Zap");
-	        break;
-	}
+	console.log(carta.getNome());
 }
 
-console.log("Cartas Bot");
+class Jogo{
+	constructor(jogador1, jogador2){
+		this.p1 = jogador1;
+		this.p2 = jogador2;
 
-for(let i = 0; i < 3; ++i){
-	let carta = pickCard();
-	let naipe;
-	switch (carta.naipe) {
-		case 0:
-			naipe = "ouros";
-			break;
-		case 1:
-			naipe = "espadas";
-			break;
-		case 2:
-			naipe = "copas";
-			break;
-		case 3:
-			naipe = "paus";
-			break;
+		this.pontosP1 = 0;
+		this.pontosP2 = 0;
+		this.vez = 1;
+		this.mesa = [];
+		this.historicoRodadas = [];
+		this.aguardandoTruco = null;
 	}
-	switch (carta.peso) {
-	    case 0:
-	        console.log("4 de " + naipe);
-	        break;
-	    case 1:
-	        console.log("5 de " + naipe);
-	        break;
-	    case 2:
-	        console.log("6 de " + naipe);
-	        break;
-	    case 3:
-	        console.log("7 de " + naipe);
-	        break;
-	    case 4:
-	        console.log("Q de " + naipe);
-	        break;
-	    case 5:
-	        console.log("J de " + naipe);
-	        break;
-	    case 6:
-	        console.log("K de " + naipe);
-	        break;
-	    case 7:
-	        console.log("A de " + naipe);
-	        break;
-	    case 8:
-	        console.log("2 de " + naipe);
-	        break;
-	    case 9:
-	        console.log("3 de " + naipe);
-	        break;
-	    case 10:
-	        console.log("7 Ouros");
-	        break;
-	    case 11:
-	        console.log("Espadilha");
-	        break;
-	    case 12:
-	        console.log("7 Copas");
-	        break;
-	    case 13:
-	        console.log("Zap");
-	        break;
-	}
+	
+	
 }
