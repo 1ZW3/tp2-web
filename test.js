@@ -690,6 +690,10 @@ const slots = document.querySelectorAll(
     ".centro-mesa .carta-slot"
 );
 
+const cartaJogadaJogador = slots[1];
+
+let cartaJaJogada = false;
+
 const placarJogador = document.querySelector("#pontos-jogador");
 const placarBot = document.querySelector("#pontos-bot");
 const mensagem = document.querySelector(".mensagem");
@@ -718,3 +722,18 @@ function atualizarCartas() {
 }
 
 atualizarCartas();
+
+cartasJogador.forEach((elemento, indice) => {
+    elemento.addEventListener("click", () => {
+        if (cartaJaJogada) {
+            return;
+        }
+
+        const carta = jogo.maoP1[indice];
+
+        cartaJogadaJogador.textContent = carta.getNome();
+        elemento.style.visibility = "hidden";
+
+        cartaJaJogada = true;
+    });
+});
