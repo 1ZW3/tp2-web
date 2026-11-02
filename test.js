@@ -676,6 +676,8 @@ const bot = new BotDumb("Bot");
 
 const jogo = new Jogo(jogador, bot);
 
+jogo.darCartas();
+
 const cartasJogador = document.querySelectorAll(
     ".area-jogador .carta"
 );
@@ -701,3 +703,18 @@ console.log("Jogo:", jogo);
 console.log("Cartas do jogador:", cartasJogador.length);
 console.log("Cartas do bot:", cartasBot.length);
 console.log("Espaços na mesa:", slots.length);
+
+function atualizarCartas() {
+
+    cartasJogador.forEach((elemento, indice) => {
+        const carta = jogo.maoP1[indice];
+
+        elemento.textContent = carta.getNome();
+    });
+
+    cartasBot.forEach(elemento => {
+        elemento.textContent = "";
+    });
+}
+
+atualizarCartas();
