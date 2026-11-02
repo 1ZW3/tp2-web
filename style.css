@@ -121,3 +121,9 @@ body {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
+/*so pra destacar*/
+
+.frente:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 10px white;
+}
