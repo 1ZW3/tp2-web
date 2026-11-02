@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -14,6 +18,48 @@ body {
     width: 100%;
     height: 100vh;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    padding: 15px 0;
+}
+
+/* parte do placar */
+
+.placar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 35px;
+    padding: 10px 20px;
+    background: rgba(136, 0, 0, 0.885);
+    border-radius: 10px;
+}
+
+.pontos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.pontos span {
+    font-size: 12px;
+}
+
+.pontos strong {
+    font-size: 25px;
+}
+
+.titulo {
+    text-align: center;
+}
+
+.titulo h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.titulo span {
+    font-size: 11px;
 }
