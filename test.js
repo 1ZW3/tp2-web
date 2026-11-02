@@ -1,11 +1,5 @@
 /*A parte de output No terminal Foi feita por IA para feedback rapido e testar se o codigo está funcionando*/
 
-const readline = require("readline/promises");
-const terminal = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
 class Carta {
     constructor(peso, naipe, nome, nomeEspecial = null) {
         this.peso = peso;
@@ -677,4 +671,88 @@ async function iniciar() {
     terminal.close();
 }
 
-iniciar();
+const jogador = { nome: "Você" };
+const bot = new BotDumb("Bot");
+
+const jogo = new Jogo(jogador, bot);
+
+jogo.darCartas();
+
+const cartasJogador = document.querySelectorAll(
+    ".area-jogador .carta"
+);
+
+const cartasBot = document.querySelectorAll(
+    ".area-bot .carta"
+);
+
+const slots = document.querySelectorAll(
+    ".centro-mesa .carta-slot"
+);
+
+const cartaJogadaJogador = slots[1];
+const cartaJogadaBot = slots[0];
+
+let cartaJaJogada = false;
+
+const placarJogador = document.querySelector("#pontos-jogador");
+const placarBot = document.querySelector("#pontos-bot");
+const mensagem = document.querySelector(".mensagem");
+
+console.log("JavaScript funcionando");
+
+console.log("Jogador:", jogador);
+console.log("Bot:", bot);
+console.log("Jogo:", jogo);
+
+console.log("Cartas do jogador:", cartasJogador.length);
+console.log("Cartas do bot:", cartasBot.length);
+console.log("Espaços na mesa:", slots.length);
+
+function atualizarCartas() {
+
+    cartasJogador.forEach((elemento, indice) => {
+        const carta = jogo.maoP1[indice];
+
+        elemento.textContent = carta.getNome();
+    });
+
+    cartasBot.forEach(elemento => {
+        elemento.textContent = "";
+    });
+}
+
+atualizarCartas();
+
+cartasJogador.forEach((elemento, indice) => {
+    elemento.addEventListener("click", () => {
+        if (cartaJaJogada) {
+            return;
+        }
+        const jogadaJogador = jogo.jogarCarta(1, indice);
+
+        cartaJogadaJogador.textContent = jogadaJogador.carta.getNome();
+        elemento.style.visibility = "hidden";
+
+        cartaJaJogada = true;
+
+        const indiceBot = bot.escolherCarta(jogo.maoP2);
+        const jogadaBot = jogo.jogarCarta(2, indiceBot);
+
+        cartaJogadaBot.textContent = jogadaBot.carta.getNome();
+
+        const resultado = quemGanhaRodada(jogadaJogador, jogadaBot);
+
+        if (resultado === 1) {
+            mensagem.textContent = "Você venceu a rodada!";
+        }
+        else if (resultado === 2) {
+            mensagem.textContent = "O bot venceu a rodada!";
+        }
+        else {
+            mensagem.textContent = "Empate!";
+        }
+
+        cartasBot[2].style.visibility = "hidden";
+    });
+});
