@@ -691,6 +691,7 @@ const slots = document.querySelectorAll(
 );
 
 const cartaJogadaJogador = slots[1];
+const cartaJogadaBot = slots[0];
 
 let cartaJaJogada = false;
 
@@ -728,12 +729,30 @@ cartasJogador.forEach((elemento, indice) => {
         if (cartaJaJogada) {
             return;
         }
+        const jogadaJogador = jogo.jogarCarta(1, indice);
 
-        const carta = jogo.maoP1[indice];
-
-        cartaJogadaJogador.textContent = carta.getNome();
+        cartaJogadaJogador.textContent = jogadaJogador.carta.getNome();
         elemento.style.visibility = "hidden";
 
         cartaJaJogada = true;
+
+        const indiceBot = bot.escolherCarta(jogo.maoP2);
+        const jogadaBot = jogo.jogarCarta(2, indiceBot);
+
+        cartaJogadaBot.textContent = jogadaBot.carta.getNome();
+
+        const resultado = quemGanhaRodada(jogadaJogador, jogadaBot);
+
+        if (resultado === 1) {
+            mensagem.textContent = "Você venceu a rodada!";
+        }
+        else if (resultado === 2) {
+            mensagem.textContent = "O bot venceu a rodada!";
+        }
+        else {
+            mensagem.textContent = "Empate!";
+        }
+
+        cartasBot[2].style.visibility = "hidden";
     });
 });
