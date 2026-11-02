@@ -1,0 +1,129 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #000;
+    background: url('tp2img/fundofinal.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.mesa {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+/* parte do placar */
+
+.placar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 35px;
+    padding: 10px 20px;
+    background: rgba(144, 143, 143, 0.885);
+    border-radius: 10px;
+}
+
+.pontos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.pontos span {
+    font-size: 12px;
+}
+
+.pontos strong {
+    font-size: 25px;
+}
+
+.titulo {
+    text-align: center;
+}
+
+.titulo h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.titulo span {
+    font-size: 11px;
+}
+
+/* aqui é meio que onde vai ficar as cartas */
+
+.area-bot,
+.area-jogador {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.area-bot h2,
+.area-jogador h2 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.mao-cartas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* cartas */
+
+.carta {
+    width: 85px;
+    height: 125px;
+    flex-shrink: 0;
+    border-radius: 6px;
+}
+
+/*cartas do bot */
+
+.verso {
+    background: #b22222;
+    border: 2px solid white;
+}
+
+/*cartas do jogador */
+
+.frente {
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border: 1px solid #ccc;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/*so pra destacar*/
+
+.frente:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 0 10px white;
+}

@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Truco</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="mesa">
+        <header class="placar">
+
+            <div class="pontos">
+                <span>BOT</span>
+                <strong id="pontos-bot">0</strong>
+            </div>
+
+            <div class="titulo">
+                <h1>TRUCO</h1>
+                <span>Partida em andamento</span>
+            </div>
+
+            <div class="pontos">
+                <span>VOCÊ</span>
+                <strong id="pontos-jogador">0</strong>
+            </div>
+        </header>
+        
+        <section class="area-bot">
+            <h2>Cartas do bot</h2>
+
+            <div class="mao-cartas">
+                <div class="carta verso"></div>
+                <div class="carta verso"></div>
+                <div class="carta verso"></div>
+            </div>
+        </section>
+
+        <section class="centro-mesa">
+            <div class="cartas-jogadas">
+
+                <div class="lado-jogada">
+                    <span>BOT</span>
+                    <div class="carta-slot"></div>
+                </div>
+
+                <span class="separador">VS</span>
+
+                <div class="lado-jogada">
+                    <span>VOCÊ</span>
+                    <div class="carta-slot"></div>
+                </div>
+            </div>
+
+            <p class="mensagem">Sua vez de jogar</p>
+        </section>
+
+        <section class="area-jogador">
+            <h2>Suas cartas</h2>
+
+            <div class="mao-cartas">
+                <button class="carta frente" aria-label="Carta 1"></button>
+                <button class="carta frente" aria-label="Carta 2"></button>
+                <button class="carta frente" aria-label="Carta 3"></button>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

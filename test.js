@@ -11,7 +11,7 @@ class Carta{
 			return this.nomeEspecial;
 		return `${this.nome} de ${this.naipe}`;
 	}
-	
+    
 }
 
 let baralho = [
