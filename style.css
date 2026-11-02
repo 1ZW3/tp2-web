@@ -127,3 +127,93 @@ body {
     transform: translateY(-10px);
     box-shadow: 0 0 10px white;
 }
+
+
+/* conteudo cartas */
+
+.canto {
+    align-self: flex-start;
+    font-size: 14px;
+}
+
+.simbolo {
+    font-size: 30px;
+}
+
+/* naipes vermelhos e pretos */
+
+.vermelha {
+    color: red;
+}
+
+.preta {
+    color: black;
+}
+
+/* destaque nas manilha */
+
+.especial {
+    border: 2px solid gold;
+    background: #fff4d6;
+}
+
+
+/* centro mesa */
+
+.centro-mesa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.cartas-jogadas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.lado-jogada {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.lado-jogada span {
+    font-size: 12px;
+}
+
+.carta-slot {
+    width: 85px;
+    height: 125px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 6px;
+    border: 1px dashed white;
+    border-radius: 6px;
+
+    font-size: 13px;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.separador {
+    font-weight: bold;
+}
+
+.mensagem {
+    margin: 0;
+    padding: 8px 12px;
+
+    font-size: 13px;
+    text-align: center;
+
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+}
+
