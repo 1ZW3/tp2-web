@@ -32,7 +32,7 @@ body {
     justify-content: space-between;
     gap: 35px;
     padding: 10px 20px;
-    background: rgba(136, 0, 0, 0.885);
+    background: rgba(144, 143, 143, 0.885);
     border-radius: 10px;
 }
 
@@ -63,3 +63,61 @@ body {
 .titulo span {
     font-size: 11px;
 }
+
+/* aqui é meio que onde vai ficar as cartas */
+
+.area-bot,
+.area-jogador {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.area-bot h2,
+.area-jogador h2 {
+    margin: 0;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.mao-cartas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
+/* cartas */
+
+.carta {
+    width: 85px;
+    height: 125px;
+    flex-shrink: 0;
+    border-radius: 6px;
+}
+
+/*cartas do bot */
+
+.verso {
+    background: #b22222;
+    border: 2px solid white;
+}
+
+/*cartas do jogador */
+
+.frente {
+    padding: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border: 1px solid #ccc;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
