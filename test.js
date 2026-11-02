@@ -1,11 +1,5 @@
 /*A parte de output No terminal Foi feita por IA para feedback rapido e testar se o codigo está funcionando*/
 
-const readline = require("readline/promises");
-const terminal = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-});
-
 class Carta {
     constructor(peso, naipe, nome, nomeEspecial = null) {
         this.peso = peso;
@@ -677,4 +671,33 @@ async function iniciar() {
     terminal.close();
 }
 
-iniciar();
+const jogador = { nome: "Você" };
+const bot = new BotDumb("Bot");
+
+const jogo = new Jogo(jogador, bot);
+
+const cartasJogador = document.querySelectorAll(
+    ".area-jogador .carta"
+);
+
+const cartasBot = document.querySelectorAll(
+    ".area-bot .carta"
+);
+
+const slots = document.querySelectorAll(
+    ".centro-mesa .carta-slot"
+);
+
+const placarJogador = document.querySelector("#pontos-jogador");
+const placarBot = document.querySelector("#pontos-bot");
+const mensagem = document.querySelector(".mensagem");
+
+console.log("JavaScript funcionando");
+
+console.log("Jogador:", jogador);
+console.log("Bot:", bot);
+console.log("Jogo:", jogo);
+
+console.log("Cartas do jogador:", cartasJogador.length);
+console.log("Cartas do bot:", cartasBot.length);
+console.log("Espaços na mesa:", slots.length);
