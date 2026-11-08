@@ -75,7 +75,9 @@ const estado = {
     mp1: [],
     mp2: [],
     baralho: [],
-    jogadas: []
+    jogadas: [],
+    rodadas: [] /*esse vai guardar quem ganhou cada rodada ex [1, 2, 1]*/
+    /*tem de adicionar varias coisas ainda de controle de estado, para o futuro*/
 };
 
 function pickCard(){
@@ -86,6 +88,10 @@ function pickCard(){
 
 function novaMao(){
 	estado.baralho = [...baralho];
+	estado.rodadas = [];
+	estado.jogadas = [];
+	estado.valor = 2;
+	estado.turno = 1;
 	estado.mp1 = [];
 	estado.mp2 = [];
 	for(let i = 0;i < 6; ++i){
@@ -108,3 +114,35 @@ function quemGanha(jogadas){
 
 	return p1.carta.peso > p2.carta.peso ?  1 : (p1.carta.peso < p2.carta.peso ? 2 : 0);
 }
+
+function quemGanhaJ(rodadas){
+	let r1 = rodadas[0];
+	let r2 = rodadas[1];
+	let r3 = rodadas[2]; //acho que nn tem problema, se ficar undefined
+
+	
+	//caso empate primeira
+	if(r1 === 0){
+		if(r2 === 1) return 1;
+		if(r2 === 2) return 2;
+		if(r2 === 0){
+			if(r3 === 1) return 1;
+			if(r3 === 2) return 2;
+			if(r3 === 0) return 0;
+		}
+		return null;
+	}
+	//caso empate segunda, ou ganhar 2 seguidas
+	if(r2 !== undefined){
+		if(r2 === r1) return r1;
+		if(r2 === 0) return r1;
+	}
+
+	//caso chegue aqui é porque r1 != r2, então decide em r3
+	if(r3 !== undefined){
+		if(r3 === 0) return r1;
+		return r3;
+	}
+}
+
+
