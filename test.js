@@ -80,10 +80,15 @@ const estado = {
     /*tem de adicionar varias coisas ainda de controle de estado, para o futuro*/
 };
 
-function pickCard(){
-	let rng = Math.floor(Math.random() * estado.baralho.length);
-	let carta = estado.baralho.splice(rng, 1);
+function tirarCarta(vetor, idx = -1){
+	if(idx === -1)
+		idx = Math.floor(Math.random() * vetor.length);
+	let carta = vetor.splice(idx, 1);
 	return carta[0];
+}
+
+function pickCard(){
+	return tirarCarta(estado.baralho);
 }
 
 function novaMao(){
@@ -145,4 +150,17 @@ function quemGanhaJ(rodadas){
 	}
 }
 
+function jogarCarta(jogador, encoberta = false, idx = -1){
+	let mao
+	if(jogador === 1)
+		mao = estado.mp1;
+	else if(jogador === 2)
+		mao = estado.mp2;
 
+	let carta = tirarCarta(mao, idx);
+	carta = encoberta ? new Carta(-1, "", "Encoberta") : carta;
+
+	estado.jogadas.push({player : jogador, carta : carta});
+	estado.turno = jogador === 1 ? 2 : 1;
+	
+}
