@@ -9,7 +9,7 @@ class Carta {
     getNome() {
         if (this.nomeEspecial)
             return this.nomeEspecial;
-        return this.nome + " de " + this.naipe;
+        return this.nome;
     }
 }
 
@@ -148,19 +148,63 @@ function quemGanhaJ(rodadas){
 		if(r3 === 0) return r1;
 		return r3;
 	}
+	return null;
 }
 
-function jogarCarta(jogador, encoberta = false, idx = -1){
-	let mao
+function jogarCarta(jogador, idx = -1){
+	let mao;
 	if(jogador === 1)
 		mao = estado.mp1;
 	else if(jogador === 2)
 		mao = estado.mp2;
 
 	let carta = tirarCarta(mao, idx);
-	carta = encoberta ? new Carta(-1, "", "Encoberta") : carta;
 
 	estado.jogadas.push({player : jogador, carta : carta});
 	estado.turno = jogador === 1 ? 2 : 1;
-	
+	return carta;
 }
+
+function pedirTruco(){
+	let botAceita = Math.random() > 0.5;
+
+	if(botAceita){
+		estado.valor = 4;
+		return "aceitou";
+	}
+	else{
+		estado.p1 += estado.valor;
+		novaMao();
+		return "correu";
+	}
+}
+
+function jogarRodada(idx){
+	let cartaJogador = jogarCarta(1, idx);
+	let cartaBot = jogarCarta(2);
+
+	let vencedorRodada = quemGanha(estado.jogadas);
+	estado.rodadas.push(vencedorRodada);
+
+	estado.jogadas = [];
+
+	let vencedorMao = quemGanhaJ(estado.rodadas);
+	if(vencedorMao === 1){
+		estado.p1 += estado.valor;
+		novaMao();
+	}
+	else if(vencedorMao === 2){
+		estado.p2 += estado.valor;
+		novaMao();
+	}
+
+	return {
+		cartaJogador: cartaJogador,
+		cartaBot: cartaBot,
+		vencedorRodada: vencedorRodada,
+		vencedorMao: vencedorMao
+	};
+}
+
+novaMao();
+
