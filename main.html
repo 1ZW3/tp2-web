@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div class="mesa">
+
         <header class="placar">
 
             <div class="pontos">
@@ -25,9 +27,11 @@
                 <span>VOCÊ</span>
                 <strong id="pontos-jogador">0</strong>
             </div>
+
         </header>
-        
+
         <section class="area-bot">
+
             <h2>Cartas do bot</h2>
 
             <div class="mao-cartas">
@@ -35,9 +39,25 @@
                 <div class="carta verso"></div>
                 <div class="carta verso"></div>
             </div>
+
         </section>
 
         <section class="centro-mesa">
+
+            <div class="info-partida">
+
+                <span>
+                    Valor da mão:
+                    <strong id="valor-mao">2</strong>
+                </span>
+
+                <span>
+                    Rodada:
+                    <strong id="numero-rodada">1</strong>
+                </span>
+
+            </div>
+
             <div class="cartas-jogadas">
 
                 <div class="lado-jogada">
@@ -51,21 +71,62 @@
                     <span>VOCÊ</span>
                     <div class="carta-slot"></div>
                 </div>
+
             </div>
 
             <p class="mensagem">Sua vez de jogar</p>
+
+            <p id="resultado-rodada" class="resultado-rodada"></p>
+
+            <div id="resultado-mao" class="resultado-mao"></div>
+
+            <div class="acoes">
+
+                <button id="btn-truco">
+                    PEDIR TRUCO
+                </button>
+
+                <button id="btn-aceitar" hidden>
+                    ACEITAR
+                </button>
+
+                <button id="btn-correr" hidden>
+                    CORRER
+                </button>
+
+            </div>
+
         </section>
 
         <section class="area-jogador">
+
             <h2>Suas cartas</h2>
 
             <div class="mao-cartas">
+
                 <button class="carta frente" aria-label="Carta 1"></button>
+
                 <button class="carta frente" aria-label="Carta 2"></button>
+
                 <button class="carta frente" aria-label="Carta 3"></button>
+
             </div>
+
         </section>
+
     </div>
+
+    <div id="fim-jogo" class="fim-jogo">
+
+        <h2 id="mensagem-fim"></h2>
+
+        <button id="btn-reiniciar">
+            JOGAR NOVAMENTE
+        </button>
+
+    </div>
+
     <script src="test.js"></script>
+
 </body>
 </html>
