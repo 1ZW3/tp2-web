@@ -208,3 +208,132 @@ function jogarRodada(idx){
 
 novaMao();
 
+
+const cartasHTML = document.querySelectorAll(".area-jogador .carta");
+const slots = document.querySelectorAll(".carta-slot");
+
+const naipes = {
+    Ouros: "♦",
+    Espadas: "♠",
+    Copas: "♥",
+    Paus: "♣"
+};
+
+// Mostrar cartas do jogador
+function atualizarCartas() {
+    cartasHTML.forEach((elemento, i) => {
+        const carta = estado.mp1[i];
+
+        if (!carta) {
+            elemento.innerHTML = "";
+            elemento.disabled = true;
+            return;
+        }
+
+        elemento.disabled = false;
+
+        elemento.innerHTML = `
+            <span class="canto">${carta.nome}</span>
+            <span class="simbolo ${
+                carta.naipe === "Copas" || carta.naipe === "Ouros"
+                ? "vermelha" : "preta"
+            }">${naipes[carta.naipe]}</span>
+        `;
+
+        elemento.classList.toggle("especial", !!carta.nomeEspecial);
+    });
+}
+
+// Atualizar placar
+function atualizarPlacar() {
+    document.getElementById("pontos-jogador").textContent = estado.p1;
+    document.getElementById("pontos-bot").textContent = estado.p2;
+    document.getElementById("valor-mao").textContent = estado.valor;
+}
+
+// Jogar carta
+function jogar(idx) {
+    if (estado.mp1[idx] === undefined) return;
+
+    const resultado = jogarRodada(idx);
+
+    // Mostrar cartas jogadas
+    [resultado.cartaBot, resultado.cartaJogador].forEach((carta, i) => {
+        slots[i].innerHTML = `
+            <span>${carta.nome}</span>
+            <span class="${carta.naipe === "Copas" || carta.naipe === "Ouros" ? "vermelha" : "preta"}">
+                ${naipes[carta.naipe]}
+            </span>
+        `;
+    });
+
+    document.querySelector(".mensagem").textContent =
+        resultado.vencedorRodada === 1 ? "Você ganhou a rodada!" :
+        resultado.vencedorRodada === 2 ? "Bot ganhou a rodada!" :
+        "Empate!";
+
+    atualizarPlacar();
+    atualizarCartas();
+
+    if (resultado.vencedorMao !== null) {
+        document.getElementById("resultado-mao").textContent =
+            resultado.vencedorMao === 1
+            ? "Você ganhou a mão!"
+            : "Bot ganhou a mão!";
+
+        if (estado.p1 >= 12 || estado.p2 >= 12) {
+            document.getElementById("fim-jogo").style.display = "flex";
+            document.getElementById("mensagem-fim").textContent =
+                estado.p1 >= 12 ? "Você venceu!" : "Bot venceu!";
+            return;
+        }
+
+        setTimeout(() => {
+            novaMao();
+            slots.forEach(slot => slot.innerHTML = "");
+            document.getElementById("resultado-mao").textContent = "";
+            atualizarPlacar();
+            atualizarCartas();
+        }, 1500);
+    }
+}
+
+// Eventos das cartas
+cartasHTML.forEach((carta, idx) => {
+    carta.addEventListener("click", () => jogar(idx));
+});
+
+// Pedir truco
+document.getElementById("btn-truco").addEventListener("click", () => {
+    const resposta = pedirTruco();
+
+    if (resposta === "aceitou") {
+        document.querySelector(".mensagem").textContent = "Bot aceitou o truco!";
+    } else {
+        document.querySelector(".mensagem").textContent = "Bot correu! Você ganhou!";
+        atualizarPlacar();
+
+        setTimeout(() => {
+            novaMao();
+            atualizarCartas();
+            atualizarPlacar();
+        }, 1500);
+    }
+});
+
+// Reiniciar
+document.getElementById("btn-reiniciar").addEventListener("click", () => {
+    estado.p1 = 0;
+    estado.p2 = 0;
+
+    document.getElementById("fim-jogo").style.display = "none";
+
+    novaMao();
+    slots.forEach(slot => slot.innerHTML = "");
+
+    atualizarCartas();
+    atualizarPlacar();
+});
+
+atualizarCartas();
+atualizarPlacar();
