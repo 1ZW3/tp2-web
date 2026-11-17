@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
 }
@@ -12,6 +13,7 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    color: white;
 }
 
 .mesa {
@@ -23,8 +25,6 @@ body {
     align-items: center;
     padding: 15px 0;
 }
-
-/* parte do placar */
 
 .placar {
     display: flex;
@@ -64,8 +64,6 @@ body {
     font-size: 11px;
 }
 
-/* aqui é meio que onde vai ficar as cartas */
-
 .area-bot,
 .area-jogador {
     display: flex;
@@ -88,9 +86,6 @@ body {
     gap: 10px;
 }
 
-
-/* cartas */
-
 .carta {
     width: 85px;
     height: 125px;
@@ -98,14 +93,10 @@ body {
     border-radius: 6px;
 }
 
-/*cartas do bot */
-
 .verso {
     background: #b22222;
     border: 2px solid white;
 }
-
-/*cartas do jogador */
 
 .frente {
     padding: 6px;
@@ -121,15 +112,10 @@ body {
     transition: transform 0.2s, box-shadow 0.2s;
 }
 
-/*so pra destacar*/
-
 .frente:hover {
     transform: translateY(-10px);
     box-shadow: 0 0 10px white;
 }
-
-
-/* conteudo cartas */
 
 .canto {
     align-self: flex-start;
@@ -140,8 +126,6 @@ body {
     font-size: 30px;
 }
 
-/* naipes vermelhos e pretos */
-
 .vermelha {
     color: red;
 }
@@ -150,15 +134,10 @@ body {
     color: black;
 }
 
-/* destaque nas manilha */
-
 .especial {
     border: 2px solid gold;
     background: #fff4d6;
 }
-
-
-/* centro mesa */
 
 .centro-mesa {
     display: flex;
@@ -188,18 +167,22 @@ body {
 .carta-slot {
     width: 85px;
     height: 125px;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     padding: 6px;
     border: 1px dashed white;
     border-radius: 6px;
-
     font-size: 13px;
     text-align: center;
     overflow-wrap: anywhere;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.carta-slot:not(:empty) {
+    background: white;
+    color: black;
+    border: 2px solid gold;
 }
 
 .separador {
@@ -209,11 +192,118 @@ body {
 .mensagem {
     margin: 0;
     padding: 8px 12px;
-
     font-size: 13px;
     text-align: center;
-
     background: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
 }
 
+.resultado-rodada {
+    margin: 0;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.resultado-mao {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.info-partida {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+.info-partida strong {
+    color: gold;
+}
+
+.acoes {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.acoes button,
+.fim-jogo button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    background: #d4a017;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.acoes button:hover,
+.fim-jogo button:hover {
+    background: #ffcc33;
+    transform: scale(1.05);
+}
+
+.acoes button:active,
+.fim-jogo button:active {
+    transform: scale(0.95);
+}
+
+[hidden] {
+    display: none !important;
+}
+
+.fim-jogo {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    z-index: 10;
+    gap: 20px;
+}
+
+.fim-jogo h2 {
+    font-size: 28px;
+    text-align: center;
+}
+
+@media (max-width: 500px) {
+    .placar {
+        gap: 20px;
+        padding: 8px 12px;
+    }
+
+    .carta {
+        width: 70px;
+        height: 105px;
+    }
+
+    .cartas-jogadas {
+        gap: 12px;
+    }
+
+    .carta-slot {
+        width: 70px;
+        height: 105px;
+    }
+
+    .info-partida {
+        gap: 10px;
+        font-size: 11px;
+    }
+
+    .acoes button {
+        padding: 9px 12px;
+        font-size: 11px;
+    }
+}
